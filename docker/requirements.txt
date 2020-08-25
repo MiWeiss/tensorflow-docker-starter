@@ -1,0 +1,8 @@
+# =========================================================================================================
+# This is an automatically generated file. It has the same content as the root folder 'requirements.tex',
+# except for the tensorflow import (which is removed as it will be inherited from tensorflow docker image)
+# =========================================================================================================
+
+tensorflow-datasets==3.2.1
+# We will delete this again
+numpy

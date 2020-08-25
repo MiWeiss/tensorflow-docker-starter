@@ -1,0 +1,4 @@
+tensorflow==2.3.0
+tensorflow-datasets==3.2.1
+# We will delete this again
+numpy
