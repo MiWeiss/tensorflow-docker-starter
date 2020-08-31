@@ -12,7 +12,7 @@ if ! [[ -d "./$SOURCES_DIR" ]]; then
 fi
 if [[ "" == "$SOURCES_DIR"  ]]; then
   printf "ERROR: You did not specify your project name (source folder). "
-  printf "Make sure to pass your project name (source folder name) as first positional argument to this script."
+  echo "Make sure to pass your project name (source folder name) as first positional argument to this script."
   exit 1
 fi
 
@@ -112,8 +112,8 @@ for folder in "${ALL_FOLDERS[@]}"
       echo ""
       echo "# Update pip and install all pip dependencies"
       echo "RUN /usr/bin/python3 -m pip install --upgrade pip"
-      echo "COPY ${DOCKER_DIR}requirements.txt requirements.txt"
-      echo "RUN pip install -r requirements.txt"
+      echo "COPY ${DOCKER_DIR}requirements.txt /opt/project/requirements.txt"
+      echo "RUN pip install -r /opt/project/requirements.txt"
     } >> "${folder}Dockerfile"
   done
 
@@ -121,12 +121,13 @@ for folder in "${ALL_FOLDERS[@]}"
 # ===============
 # COPY Resources
 # ===============
-for folder in "${ALL_FOLDERS[@]}"
+FULL_FOLDERS=("$FULL_GPU_DIR" "$FULL_CPU_DIR")
+for folder in "${FULL_FOLDERS[@]}"
   do
     {
       echo ""
       echo "# Copy the resources folder"
-      echo "COPY ./resources /resources"
+      echo "COPY ./resources /opt/project/resources"
     } >> "${folder}Dockerfile"
   done
 
@@ -135,14 +136,14 @@ for folder in "${ALL_FOLDERS[@]}"
 # =====================================
 # COPY Project Sources, including tests
 # =====================================
-FULL_FOLDERS=("$FULL_GPU_DIR" "$FULL_CPU_DIR")
 for folder in "${FULL_FOLDERS[@]}"
   do
     {
       echo ""
       echo "# Copy full project (sources + tests). This does *NOT* include the mount folder."
-      echo "COPY ./${SOURCES_DIR} /${SOURCES_DIR}"
-      echo "COPY ./tests /tests"
+      echo "COPY ./${SOURCES_DIR} /opt/project/${SOURCES_DIR}"
+      echo "COPY ./tests /opt/project/tests"
     } >> "${folder}Dockerfile"
   done
 
+echo "Regenerated ./docker/ folder based on your requirements.txt"
