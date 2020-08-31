@@ -1,4 +1,4 @@
-# tf-docker-starter
+# tensorflow-docker-starter
 ```diff
 - This is currently still under development and not yet complete. 
 - Feel free to contact me with suggestions and feedback. 
