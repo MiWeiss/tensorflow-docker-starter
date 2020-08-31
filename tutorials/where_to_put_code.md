@@ -40,3 +40,5 @@ tf-docker-starter
 └── ...                  
 ```
 
+The folder structure is inspired by the great tutorial 
+[in the the python-guide](https://docs.python-guide.org/writing/structure/#test-suite).

@@ -10,10 +10,6 @@ with docker support. This is primarily useful in the following two usecases:
 - You need to bundle / pack your project or its environment for easy execution by a third party.
 - Its the best way to use tensorflow with GPUs on Linux systems.
 
-
-Folder structure of this repo: 
-Loosely based on https://docs.python-guide.org/writing/structure/#test-suite
-
 ## How to use this template
 
 0. **System Prerequisites**
